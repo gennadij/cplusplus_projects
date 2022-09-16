@@ -12,3 +12,4 @@ _deps
 quickStartCmake/build/*
 build/*
 .vscode
+fpInCplus/build
