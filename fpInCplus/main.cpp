@@ -106,11 +106,42 @@ int main(int, char**) {
 
   std::stable_partition(people4.begin(), people4.end(), is_not_female);
   
-  std::cout << "\n people4";
+  std::cout <<"\n people4";
   
   std::for_each(
     people4.begin(), people4.end(), 
     [](const People& p){std::cout << " " << p.name << " ";});
+
+  //=========================================================================
+
+  vector<People> people5 = initReople();
+
+  people5.erase(std::remove_if(people5.begin(), people5.end(), is_not_female), people5.end());
+
+  std::cout <<"\n ====================================================== \n";
+
+  std::for_each(
+    people5.begin(), people5.end(), 
+    [](const People& p){std::cout << " " << p.name << " ";});
+
+  //=========================================================================
+
+  vector<People> people6 = initReople();
+  vector<People> people6Copy;
+
+  std::copy_if(people6.begin(), people6.end(), std::back_inserter(people6Copy), is_not_female);
+
+  people6Copy.resize(std::distance(people6Copy.begin(), people6Copy.end()));
+
+  std::cout <<"\n ====================================================== \n";
+
+  std::cout << "Size : "  << people6Copy.size(); 
+
+  std::for_each(
+    people6Copy.begin(), people6Copy.end(), 
+    [](const People& p){std::cout << " " << p.name << " ";});
+
+  //=========================================================================
 }
 
 
