@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include "chapter3/fonctionObject.h"
+#include "data/People.h"
 
 using std::string;
 using std::vector;
@@ -25,25 +27,6 @@ std::string trim_right(std::string s){
 
 std::string trim(std::string s){
   return trim_left(trim_right(s));
-}
-
-struct People {
-  string name;
-  string gender;
-};
-
-vector<People> initReople() {
-  return vector<People> {
-    People{"Marta", "female"}, 
-    People{"Peter", "male"},
-    People{"Sandra", "female"},
-    People{"Lucy", "female"},
-    People{"Mark", "male"},
-    People{"Anton", "male"},
-    People{"Luda", "female"},
-    People{"Artiom", "male"},
-    People{"Aljona", "female"}
-    }; 
 }
 
 bool is_female(const People& p){
@@ -145,6 +128,18 @@ int main(int, char**) {
     [](const People& p){std::cout << " " << p.name << " ";});
 
   //=========================================================================
+
+  std::cout <<"\n ====================================================== \n";
+  older_than older_than_42(42);
+  older_than older_than_14(14);
+
+  vector<People> people7 = initReople();
+
+  std::cout << older_than_42(people1.at(0)) << "\n";
+  std::cout << older_than_42(people1.at(5)) << "\n";
+  std::cout << older_than_14(people1.at(0)) << "\n";
+  std::cout << older_than_14(people1.at(5)) << "\n";
+
 }
 
 

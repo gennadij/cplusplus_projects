@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include "chapter1/count_new_lines.cpp"
 
 struct People {
     std::string gender;
