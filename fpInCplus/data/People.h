@@ -15,6 +15,11 @@ struct People {
   int age;
 };
 
+struct NotPeople {
+  string name;
+  string gender;
+};
+
 vector<People> initReople() {
   return vector<People> {
     People{"Marta", "female", 10}, 

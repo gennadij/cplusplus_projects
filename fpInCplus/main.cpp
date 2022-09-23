@@ -4,6 +4,7 @@
 #include <numeric>
 #include "chapter3/fonctionObject.h"
 #include "data/People.h"
+#include "data/Cars.h"
 
 using std::string;
 using std::vector;
@@ -130,15 +131,27 @@ int main(int, char**) {
   //=========================================================================
 
   std::cout <<"\n ====================================================== \n";
-  older_than older_than_42(42);
-  older_than older_than_14(14);
+  older_than<People> older_than_42(42);
+  older_than<People> older_than_14(14);
 
   vector<People> people7 = initReople();
 
-  std::cout << older_than_42(people1.at(0)) << "\n";
-  std::cout << older_than_42(people1.at(5)) << "\n";
-  std::cout << older_than_14(people1.at(0)) << "\n";
-  std::cout << older_than_14(people1.at(5)) << "\n";
+  std::cout << older_than_42(people7.at(0)) << "\n";
+  std::cout << older_than_42(people7.at(5)) << "\n";
+  std::cout << older_than_14(people7.at(0)) << "\n";
+  std::cout << older_than_14(people7.at(5)) << "\n";
+
+  //=========================================================================
+
+  std::cout <<"\n ====================================================== \n";
+
+  vector<People> people8 = initReople();
+  vector<Cars> cars1 = initCars();
+
+  std::cout << std::count_if(people8.begin(), people8.end(), older_than_42) << "\n";
+  std::cout << std::count_if(people8.begin(), people8.end(), older_than_14) << "\n";
+  std::cout << std::count_if(people8.begin(), people8.end(), older_than<People>(100)) << "\n";
+  std::cout << std::count_if(cars1.begin(), cars1.end(), older_than<Cars>(50)) << "\n";
 
 }
 
