@@ -2,6 +2,9 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include "chapter3/fonctionObject.h"
+#include "data/People.h"
+#include "data/Cars.h"
 
 using std::string;
 using std::vector;
@@ -25,25 +28,6 @@ std::string trim_right(std::string s){
 
 std::string trim(std::string s){
   return trim_left(trim_right(s));
-}
-
-struct People {
-  string name;
-  string gender;
-};
-
-vector<People> initReople() {
-  return vector<People> {
-    People{"Marta", "female"}, 
-    People{"Peter", "male"},
-    People{"Sandra", "female"},
-    People{"Lucy", "female"},
-    People{"Mark", "male"},
-    People{"Anton", "male"},
-    People{"Luda", "female"},
-    People{"Artiom", "male"},
-    People{"Aljona", "female"}
-    }; 
 }
 
 bool is_female(const People& p){
@@ -145,6 +129,30 @@ int main(int, char**) {
     [](const People& p){std::cout << " " << p.name << " ";});
 
   //=========================================================================
+
+  std::cout <<"\n ====================================================== \n";
+  older_than<People> older_than_42(42);
+  older_than<People> older_than_14(14);
+
+  vector<People> people7 = initReople();
+
+  std::cout << older_than_42(people7.at(0)) << "\n";
+  std::cout << older_than_42(people7.at(5)) << "\n";
+  std::cout << older_than_14(people7.at(0)) << "\n";
+  std::cout << older_than_14(people7.at(5)) << "\n";
+
+  //=========================================================================
+
+  std::cout <<"\n ====================================================== \n";
+
+  vector<People> people8 = initReople();
+  vector<Cars> cars1 = initCars();
+
+  std::cout << std::count_if(people8.begin(), people8.end(), older_than_42) << "\n";
+  std::cout << std::count_if(people8.begin(), people8.end(), older_than_14) << "\n";
+  std::cout << std::count_if(people8.begin(), people8.end(), older_than<People>(100)) << "\n";
+  std::cout << std::count_if(cars1.begin(), cars1.end(), older_than<Cars>(50)) << "\n";
+
 }
 
 

@@ -1,21 +1,17 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include "../data/People.h"
 
-using std:string;
+using std::string;
 
-struct People {
-  std::string name;
-  std::string gender;
-};
-
-
+template <typename T>
 class older_than{
   public:
     older_than(int limit) : m_limit(limit){}
 
-    bool operator() ()const {
-      return true;
+    bool operator() (const T& o) const {
+      return o.age > m_limit;
     }
   private:
     int m_limit;
